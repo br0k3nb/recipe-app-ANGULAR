@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'recipeApp';
+  render:string = 'recipe';
+
+  constructor() {}
+
+  whichToRender(event: string) {
+    this.render = event;
+  }
 }

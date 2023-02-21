@@ -1,0 +1,65 @@
+<div *ngIf="recipe !== undefined; else noRecipe">
+    <div class="row">
+        <div class="col-xs-9">
+            <h1 >{{recipe.name}}</h1>
+        </div>
+        <div class="col-xs-3" >
+            <div class="btn-group" appDropdown style="padding-top: 25px;">
+                <button 
+                    class="btn btn-primary dropdown-toggle"
+                >
+                    Manage recipe 
+
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu open">
+                    <li href="#">Add to shopping list</li>
+                    <li href="#">Edit</li>
+                    <li href="#">Delte</li>
+                </ul>
+            </div>  
+        </div>
+    </div>
+    <div class="row" style="padding-bottom: 10px;">
+        <div class="col-xs-12">
+            <img [src]="recipe.imagePath" alt="recipe-image" class="img-responsive img-rounded" >
+        </div>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group">
+                <button 
+                    class="btn btn-primary dropdown-toggle"
+                >
+                    Manage recipe 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li href="#">Add to shopping list</li>
+                    <li href="#">Edit</li>
+                    <li href="#">Delte</li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col-xs-12">
+            <h5>{{recipe.description}}</h5>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col-xs-12">
+            Ingridients
+        </div>
+    </div>
+</div>
+
+<ng-template #noRecipe>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 style="color:gray">Click in a recipe to see more details</h2>
+        </div>
+    </div>
+</ng-template>
