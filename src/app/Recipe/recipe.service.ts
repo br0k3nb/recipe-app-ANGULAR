@@ -3,6 +3,7 @@ import { Recipe } from "./RecipeList/recipe.model";
 
 @Injectable()
 export class RecipeService {
+    recipeWasChanged = new EventEmitter<Recipe[]>();
     recipeClicked = new EventEmitter<Recipe>();
 
     private recipes: Recipe[] = [
@@ -10,10 +11,11 @@ export class RecipeService {
     ];
 
     getRecipes() {
-        return this.recipes;
+        return this.recipes.slice();
     }
 
     addNew(recipe: Recipe) {
         this.recipes.push(recipe);
+        this.recipeWasChanged.emit(this.recipes.slice());
     }
 }

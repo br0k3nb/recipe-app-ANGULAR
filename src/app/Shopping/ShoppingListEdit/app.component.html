@@ -4,20 +4,36 @@
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" #ingName>
+                    <input 
+                        type="text"
+                        id="name" 
+                        class="form-control" 
+                        #ingName
+                        (selectionchange)="onChangeName($event)"
+                    >
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
-                    <input type="number" id="amount" class="form-control" min="0" placeholder="0" #ingAmout >
+                    <input
+                        type="number" 
+                        id="amount" 
+                        class="form-control" 
+                        placeholder="1" 
+                        #ingAmount 
+                        (selectionchange)="onChangeAmount($event)"
+                    >
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
+                    <p class="text-danger" *ngIf="wasOver">To add a new Ingredient, you must insert a valid name and amount!</p>
                     <button 
                         class="btn btn-success"
                         type="submit"
                         style="margin-right: 5px;"
                         (click)="addIng()"
+                        (mouseenter)="onMouseEnter()"
+                        [disabled]="detectChangeOnAmount <= 0 || detectChangeOnName === ''"
                     >
                         Add
                     </button>
