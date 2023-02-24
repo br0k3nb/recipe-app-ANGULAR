@@ -10,8 +10,9 @@ import { RecipeItem } from './Recipe/RecipeItem/app.component';
 import { RecipeList } from './Recipe/RecipeList/app.component';
 import { ShoppingList } from './Shopping/ShoppingList/app.component';
 import { ShoppingListEdit } from './Shopping/ShoppingListEdit/app.component'
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RecipeEdit } from './Recipe/RecipeEdit/app.component';
+import { PageNotFound } from './pageNotFound/app.component';
+import { RecipeNotSelected } from './Recipe/RecipeNotSelected/app.component';
 
 import { DropdownDirective } from './shared/dropdown.directive';
 
@@ -26,13 +27,14 @@ import { ShoppingService } from './Shopping/shopping.service';
     ShoppingList,
     ShoppingListEdit,
     DropdownDirective,
-    RecipeEditComponent,
-    PageNotFoundComponent
+    RecipeEdit,
+    PageNotFound,
+    RecipeNotSelected
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
+    AppRoutingModule
   ],
   providers: [ShoppingService],
   bootstrap: [AppComponent]

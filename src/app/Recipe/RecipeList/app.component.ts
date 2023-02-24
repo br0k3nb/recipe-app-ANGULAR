@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecipeService } from "../recipe.service";
 import { Recipe } from "./recipe.model";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-recipe-list',
@@ -8,22 +9,20 @@ import { Recipe } from "./recipe.model";
     styleUrls: ['./app.component.css']
 })
 export class RecipeList implements OnInit {
-    constructor(private recipeSrc: RecipeService) {}
+    constructor(private recipeSrc: RecipeService, private router: Router, private route: ActivatedRoute) {}
 
     recipes: Recipe[];
 
     ngOnInit(): void {
         this.recipes = this.recipeSrc.getRecipes();
-        this.recipeSrc.recipeWasChanged.subscribe((recipes: Recipe[]) => {
-            return this.recipes = recipes;
-        });
+        // this.recipeSrc.recipeWasChanged.subscribe((recipes: Recipe[]) => {
+        //     return this.recipes = recipes;
+        // });
     }
 
-    addNewRecipe({name, description, imagePath, ingredients}) {
-        // this.recipeSrc.addNew({name, description, imagePath, ingredients: {name: ingredients[0], amount: ingredients[1]}});
+    addNew() {
+        this.router.navigate(['add'], {relativeTo: this.route});
     }
 
-    onRecipeClick(i: number) {
-        this.recipeSrc.recipeClicked.emit(this.recipes[i]);
-    }
+    // addNewRecipe({name, description, imagePath, ingredients}) { }
 }

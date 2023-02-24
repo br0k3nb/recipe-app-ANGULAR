@@ -1,6 +1,5 @@
-<app-header (toRender)="whichToRender($event)"/>
+<app-header/>
 
 <div class="container">
-  <app-recipe-item *ngIf="render === 'recipe'"/>
-  <app-shopping-list *ngIf="render === 'shopping'"/>
+  <router-outlet></router-outlet>
 </div> 

@@ -2,14 +2,7 @@
     <div class="col-xs-12">
         <button 
             class="btn btn-success"
-            (click)='
-                addNewRecipe({
-                    name: "Meatball Subs",
-                    description: "Psst—the meatballs are homemade but the sauce is jarred! That`s the trick to keeping this comforting dinner easy to make even on busy weeknights",
-                    imagePath:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/easy-dinner-recipes-meatball-sub-1676054290.jpeg?crop=0.801xw:1.00xh;0.0765xw,0&resize=980:*",
-                    ingredients: ["Meatballs", 5]
-                })
-            '
+            (click)="addNew()"
         >
             Add a new recipe
         </button>
@@ -19,11 +12,11 @@
 <div class="row">
     <div class="col-xs-12" *ngFor="let recipe of recipes; index as i"> 
         <a 
-            [routerLink]="['recipe', 'detail', 1]"
-            class="list-group-item clearfix" 
+            [routerLink]="['./', 'detail', i]"
+            routerLinkActive="active"
+            class="list-group-item clearfix"
             [ngStyle]='{marginTop: i === 0 && "10px"}' 
             style='margin-bottom: 10px;' 
-            (click)="onRecipeClick(i)"
         >
             <div class="pull-left">
                 <h4 class="list-group-item-heading">{{recipe.name}}</h4>

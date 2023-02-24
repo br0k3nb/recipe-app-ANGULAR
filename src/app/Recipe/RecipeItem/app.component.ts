@@ -7,6 +7,4 @@ import { RecipeService } from "../recipe.service";
     styleUrls: ['./app.component.css'], 
     providers: [RecipeService]
 })
-export class RecipeItem {
-    constructor() {}
-}
+export class RecipeItem { }
