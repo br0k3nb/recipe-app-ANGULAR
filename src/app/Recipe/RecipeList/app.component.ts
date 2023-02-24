@@ -19,8 +19,8 @@ export class RecipeList implements OnInit {
         });
     }
 
-    addNewRecipe({name, description, imagePath}) {
-        this.recipeSrc.addNew({name, description, imagePath});
+    addNewRecipe({name, description, imagePath, ingredients}) {
+        // this.recipeSrc.addNew({name, description, imagePath, ingredients: {name: ingredients[0], amount: ingredients[1]}});
     }
 
     onRecipeClick(i: number) {

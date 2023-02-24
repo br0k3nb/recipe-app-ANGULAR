@@ -10,6 +10,7 @@
                         class="form-control" 
                         #ingName
                         (selectionchange)="onChangeName($event)"
+                        (mouseleave)="onMouseLeave()"
                     >
                 </div>
                 <div class="col-sm-2 form-group">
@@ -20,6 +21,7 @@
                         class="form-control" 
                         placeholder="1" 
                         #ingAmount 
+                        (mouseleave)="onMouseLeave()"
                         (selectionchange)="onChangeAmount($event)"
                     >
                 </div>
@@ -27,12 +29,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="text-danger" *ngIf="wasOver">To add a new Ingredient, you must insert a valid name and amount!</p>
-                    <button 
+                    <button
+                        draggable="false"
                         class="btn btn-success"
                         type="submit"
-                        style="margin-right: 5px;"
+                        style="margin-right: 5px; cursor: progress"
                         (click)="addIng()"
-                        (mouseenter)="onMouseEnter()"
                         [disabled]="detectChangeOnAmount <= 0 || detectChangeOnName === ''"
                     >
                         Add

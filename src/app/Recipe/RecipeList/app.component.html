@@ -6,7 +6,8 @@
                 addNewRecipe({
                     name: "Meatball Subs",
                     description: "Psst—the meatballs are homemade but the sauce is jarred! That`s the trick to keeping this comforting dinner easy to make even on busy weeknights",
-                    imagePath:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/easy-dinner-recipes-meatball-sub-1676054290.jpeg?crop=0.801xw:1.00xh;0.0765xw,0&resize=980:*"
+                    imagePath:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/easy-dinner-recipes-meatball-sub-1676054290.jpeg?crop=0.801xw:1.00xh;0.0765xw,0&resize=980:*",
+                    ingredients: ["Meatballs", 5]
                 })
             '
         >
@@ -18,7 +19,7 @@
 <div class="row">
     <div class="col-xs-12" *ngFor="let recipe of recipes; index as i"> 
         <a 
-            href="#" 
+            [routerLink]="['recipe', 'detail', 1]"
             class="list-group-item clearfix" 
             [ngStyle]='{marginTop: i === 0 && "10px"}' 
             style='margin-bottom: 10px;' 
@@ -33,7 +34,7 @@
                     [src]="recipe.imagePath"
                     alt="recipe-img"
                     class="responsive"
-                    style="min-height: 170px; max-height: 170px; min-width: 180px; max-width: 180px; display: block;"
+                    style="min-height: 170px; max-height: 170px; min-width: 170px; max-width: 170px; display: block;"
                 >
             </span>
         </a>

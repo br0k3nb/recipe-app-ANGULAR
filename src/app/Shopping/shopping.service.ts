@@ -14,4 +14,9 @@ export class ShoppingService {
         this.ingredients.push(ingredient);
         this.ingredientsChanged.emit(this.ingredients.slice());
     }
+
+    addMultipe(ingredients: Ingredient[]) {
+        this.ingredients = [...this.ingredients, ...ingredients];
+        this.ingredientsChanged.emit(this.ingredients.slice());
+    }
 }

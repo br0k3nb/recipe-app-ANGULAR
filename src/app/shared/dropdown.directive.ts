@@ -9,7 +9,6 @@ export class DropdownDirective {
     constructor() {}
 
     @HostListener('click', ['$event.target']) onClick(element: HTMLElement) {
-        console.log(element);
         if(!this.open) this.open = true;
         else this.open = false;
     }

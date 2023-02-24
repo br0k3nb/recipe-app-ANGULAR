@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnChanges, SimpleChanges, DoCheck } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { ShoppingService } from "../shopping.service";
 
 @Component({
@@ -16,7 +16,7 @@ export class ShoppingListEdit {
 
     constructor(private shopSrc: ShoppingService) {}
 
-    onMouseEnter() {
+    onMouseLeave() {
         if(this.detectChangeOnAmount === 0 || this.detectChangeOnName === '') return this.wasOver = true;
         else return this.wasOver = false;
     }
