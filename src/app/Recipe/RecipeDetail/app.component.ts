@@ -29,4 +29,9 @@ export class RecipeDetail {
     addToSl(recipe: Recipe): void {
         this.recipeSrc.addToShoppingList(recipe);
     }
+
+    onDelete() {
+        this.recipeSrc.deleteById(this.recipeId);
+        this.router.navigate(['recipes']);
+    }
 }

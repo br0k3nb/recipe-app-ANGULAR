@@ -1,37 +1,61 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { ShoppingService } from "../shopping.service";
-
+import { Ingredient } from "../ingredient.model";
+import { NgForm, NgModel } from "@angular/forms";
+import { Subscription } from "rxjs";
 @Component({
     selector: 'app-shopping-list-edit',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class ShoppingListEdit {
-    detectChangeOnAmount: number = 0;
-    detectChangeOnName: string = '';
-    wasOver: boolean = false;
-
-    @ViewChild('ingName', {static: true}) name: ElementRef;
-    @ViewChild('ingAmount', {static: true}) amount: ElementRef;
+export class ShoppingListEdit implements OnInit, OnDestroy {
+    @ViewChild('formData') dataF: NgForm;
+    
+    editSub: Subscription;
+    editMode = false;
+    editId: number;
+    editItem: Ingredient;
 
     constructor(private shopSrc: ShoppingService) {}
 
-    onMouseLeave() {
-        if(this.detectChangeOnAmount === 0 || this.detectChangeOnName === '') return this.wasOver = true;
-        else return this.wasOver = false;
+    onSubmit(formData: NgModel) {
+        const value = formData.value;
+        const newIng = new Ingredient(value.name, value.amount);
+
+        if(this.editMode) this.shopSrc.updateById(this.editId, newIng);
+        else this.shopSrc.addNew(new Ingredient(value.name, value.amount));
+
+        this.dataF.reset();
+        this.editMode = false;
     }
 
-    onChangeAmount(event: Event) {
-        const value = parseInt((event.target as HTMLInputElement).value);
-        if(value) return this.detectChangeOnAmount = value;
-        else return this.detectChangeOnAmount = 0;
+    onDelete() {
+        this.shopSrc.deleteById(this.editId);
+        this.dataF.reset();
+        this.editMode = false;
     }
 
-    onChangeName(event: Event) {
-        const value = (event.target as HTMLInputElement).value;
-        if(value) return this.detectChangeOnName = value;
-        else return this.detectChangeOnName = '';
+    onClear() {
+        this.dataF.reset();
+        this.editMode = false;
     }
 
-    addIng() { this.shopSrc.addNew({name: this.name.nativeElement.value, amount: parseInt(this.amount.nativeElement.value)}) }
+    ngOnInit(): void {
+        this.editSub = this.shopSrc.startedEditing.subscribe(
+            (id: number) => {
+                this.editMode = true;
+                this.editId = id;
+                this.editItem = this.shopSrc.getIngredientById(id);
+
+                this.dataF.setValue({
+                    name: this.editItem.name,
+                    amount: this.editItem.amount
+                });
+            }
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.editSub.unsubscribe();
+    }
 }

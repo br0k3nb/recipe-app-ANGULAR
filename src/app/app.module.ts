@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,9 +13,9 @@ import { ShoppingListEdit } from './Shopping/ShoppingListEdit/app.component'
 import { RecipeEdit } from './Recipe/RecipeEdit/app.component';
 import { PageNotFound } from './pageNotFound/app.component';
 import { RecipeNotSelected } from './Recipe/RecipeNotSelected/app.component';
-
 import { DropdownDirective } from './shared/dropdown.directive';
 
+import { RecipeService } from './Recipe/recipe.service';
 import { ShoppingService } from './Shopping/shopping.service';
 @NgModule({
   declarations: [
@@ -34,9 +34,10 @@ import { ShoppingService } from './Shopping/shopping.service';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ShoppingService],
+  providers: [ShoppingService, RecipeService],
   bootstrap: [AppComponent]
 })
 

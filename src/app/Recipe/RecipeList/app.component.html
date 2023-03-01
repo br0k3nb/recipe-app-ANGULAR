@@ -8,7 +8,7 @@
         </button>
     </div>
 </div>
-
+<hr>
 <div class="row">
     <div class="col-xs-12" *ngFor="let recipe of recipes; index as i"> 
         <a 
@@ -19,15 +19,15 @@
             style='margin-bottom: 10px;' 
         >
             <div class="pull-left">
-                <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                <h4 class="list-group-item-heading" style="max-width: 240px;">{{recipe.name}}</h4>
                 <p class="list-group-item-text" style="max-width: 240px;">{{recipe.description}}</p>
             </div>
             <span class="pull-right">
                 <img 
                     [src]="recipe.imagePath"
                     alt="recipe-img"
-                    class="responsive"
-                    style="min-height: 170px; max-height: 170px; min-width: 170px; max-width: 170px; display: block;"
+                    class="img-responsive"
+                    style="min-height: 170px; max-height: 200px; max-width: 170px; display: block;"
                 >
             </span>
         </a>
